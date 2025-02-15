@@ -23,7 +23,7 @@ int PIN;
 bool cor = true;
 bool led_ON = false;
 bool status = true;
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 static void interrupcao(uint gpio, uint32_t events);
 
@@ -50,7 +50,7 @@ int main()
 {
 
     // #########################################################################      // Para ser utilizado o modo BOOTSEL com botão B
-    // #######################################################################
+
     gpio_set_irq_enabled_with_callback(BT_J, GPIO_IRQ_EDGE_FALL, true, &interrupcao);
     gpio_set_irq_enabled_with_callback(BT_A, GPIO_IRQ_EDGE_FALL, true, &interrupcao);
     gpio_set_irq_enabled_with_callback(BT_B, GPIO_IRQ_EDGE_FALL, true, &interrupcao);
@@ -63,7 +63,24 @@ int main()
         config_pwm(LED_R, status);
     while (true)
     {
+        ssd1306_fill(&ssd, !cor);     
+        int posicao_x = eixo_x_valor/31.2;
+        if(posicao_x > 115){
+            posicao_x = 115;        
+        }
+        if(posicao_x < 5){
+            posicao_x = 5;        
+        }
+
+        int posicao_y = 60 - (eixo_y_valor / 70.2);
+        if(posicao_y > 53){
+            posicao_y = 53;            
+        }
+        if(posicao_y < 5){
+            posicao_y = 5;
+        }
         ssd1306_rect(&ssd, 3, 3, 122, 60, cor, !cor); // Desenha um retângulo
+        ssd1306_rect(&ssd, posicao_y, posicao_x, 8, 8, 1, 1);
         ssd1306_send_data(&ssd); // Atualiza o display
         adc_config();
         gpio_put(LED_G, led_ON);
@@ -87,8 +104,9 @@ int main()
             pwm_set_gpio_level(LED_B, 0);
         }
 
-        printf("eixo x:%d\n", eixo_x_valor);
-        printf("eixo y:%d\n", eixo_y_valor);
+        printf("eixo x:%d\n", eixo_y_valor);
+        printf("eixo x:%d\n", posicao_y);
+        //printf("eixo y:%d\n", eixo_y_valor);
         sleep_ms(200);
     }
 }
@@ -113,6 +131,7 @@ void interrupcao(uint gpio, uint32_t events)
             else
             {
                 led_ON = false;
+
                 ssd1306_fill(&ssd, !cor); // Limpa o display
                 ssd1306_rect(&ssd, 6, 6, 116, 54, cor, !cor); // Desenha um retângulo
                 ssd1306_rect(&ssd, 9, 9, 110, 48, cor, !cor); // Desenha um retângulo

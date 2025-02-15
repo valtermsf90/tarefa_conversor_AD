@@ -1,7 +1,7 @@
 #include "hardware/pwm.h"
 
-#define WRAP 2500
-const float DIVISOR_PWN = 1000;
+#define WRAP 4500
+const float DIVISOR_PWN = 555;
 uint slice;
 uint pino;
 bool flag;
