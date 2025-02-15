@@ -11,6 +11,7 @@
 #define LED_R 13
 #define LED_B 12
 #define BT_A 5
+#define BT_B 6
 #define BT_J 23
 
 // Prototipos
@@ -24,6 +25,9 @@ void inicializacao_gpio()
 	gpio_init(BT_A);
 	gpio_set_dir(BT_A, GPIO_IN);
 	gpio_pull_up(BT_A);
+	gpio_init(BT_B);
+	gpio_set_dir(BT_B, GPIO_IN);
+	gpio_pull_up(BT_B);
 	gpio_init(BT_J);
 	gpio_set_dir(BT_J, GPIO_IN);
 	gpio_pull_up(BT_J);
