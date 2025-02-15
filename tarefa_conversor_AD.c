@@ -50,20 +50,49 @@ void config_display()
 }
 void borda_retangulo(int modo)
 {
-    if (modo == 1)
+    if (modo == 1) //modo camera
+    {
+        ssd1306_rect(&ssd, 3, 3, 124 , 60, cor, !cor);
+        ssd1306_rect(&ssd, 0, 0, 7 , 7, cor, cor);
+        ssd1306_rect(&ssd, 0, 40, 7 , 7, cor, cor);
+        ssd1306_rect(&ssd, 0, 80, 7 , 7, cor, cor);
+        ssd1306_rect(&ssd, 0, 121, 7 , 7, cor, cor);
+        ssd1306_rect(&ssd, 57, 0, 7 , 7, cor, cor);
+        ssd1306_rect(&ssd, 57, 121, 7 , 7, cor, cor);
+        ssd1306_rect(&ssd, 57, 40, 7 , 7, cor, cor);
+        ssd1306_rect(&ssd, 57, 80, 7 , 7, cor, cor);
+        
+    }
+    if (modo == 2) //retangulo triplo
     {
         ssd1306_rect(&ssd, 3, 3, 122, 60, cor, !cor);
-    }
-    if (modo == 2)
-    {
         ssd1306_rect(&ssd, 6, 6, 116, 54, cor, !cor);
         ssd1306_rect(&ssd, 9, 9, 110, 48, cor, !cor);
     }
-    if (modo == 3)
+    if (modo == 3) //retangulo DUPLO
     {
-        // Modo 3: Desenha um retângulo vertical no centro
-        ssd1306_rect(&ssd, 90, 5, 20, 20, cor, !cor);
-        ssd1306_rect(&ssd, 100, 15, 20, 20, cor, !cor);
+        ssd1306_rect(&ssd, 3, 3, 122, 60, cor, !cor);
+        ssd1306_rect(&ssd, 6, 6, 116, 54, cor, !cor);
+    }
+    if (modo == 4)// retangulo simles
+    {
+        ssd1306_rect(&ssd, 3, 3, 122, 60, cor, !cor);        
+    }
+    if(modo == 5){
+        //superior esquerdo
+        ssd1306_rect(&ssd,1, 1, 3, 20, cor, cor);
+        ssd1306_rect(&ssd,1, 1, 20, 3, cor, cor);
+        //inferior esquerdo
+        ssd1306_rect(&ssd, 44, 1, 3, 20, cor, cor);
+        ssd1306_rect(&ssd, 61, 1, 20, 3, cor, cor);
+        //superior direito
+        ssd1306_rect(&ssd, 1, 108, 20, 3, cor, cor);
+        ssd1306_rect(&ssd, 1, 125, 3, 20, cor, cor);
+        //inferior direito
+        ssd1306_rect(&ssd, 44, 125, 3, 20, cor, cor);
+        ssd1306_rect(&ssd, 61, 108, 20, 3, cor, cor);
+       
+        
     }
 }
 
@@ -116,7 +145,7 @@ int main()
 
         borda_retangulo(quadro);
         // Desenha um quadrado na posição calculada
-        ssd1306_rect(&ssd, posicao_y, posicao_x, 8, 8, 1, 1);
+        ssd1306_rect(&ssd, posicao_y, posicao_x, 8, 8, cor, cor);
 
         // Atualiza o display
         ssd1306_send_data(&ssd);
@@ -148,11 +177,10 @@ int main()
         }
 
         // Exibe os valores dos eixos no terminal para depuração
-        printf("eixo x:%d\n", eixo_x_valor);
+       /* printf("eixo x:%d\n", eixo_x_valor);
         printf("posicao x:%d\n", posicao_x);
-        printf("eixo y:%d\n", eixo_y_valor);
+        printf("eixo y:%d\n", eixo_y_valor);*/
         printf("posicao y:%d\n", posicao_y); // Posição Y invertida
-
         // Aguarda 200ms antes da próxima iteração
         sleep_ms(200);
     }
@@ -173,7 +201,7 @@ void interrupcao(uint gpio, uint32_t events)
             // Alterna o estado da variável led_ON
             led_ON = !led_ON;
             quadro++;
-            if (quadro > 3)
+            if (quadro > 4)
             {
                 quadro = 1;
             }
