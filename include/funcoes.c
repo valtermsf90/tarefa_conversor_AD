@@ -12,7 +12,7 @@
 #define LED_B 12
 #define BT_A 5
 #define BT_B 6
-#define BT_J 23
+#define BT_J 22
 
 // Prototipos
 
