@@ -56,6 +56,12 @@ void borda_retangulo(int modo){
         ssd1306_rect(&ssd, 6, 6, 116, 54, cor, !cor);
         ssd1306_rect(&ssd, 9, 9, 110, 48, cor, !cor);
     }
+    if(modo == 3){
+        // Modo 3: Desenha um retângulo vertical no centro    
+        ssd1306_rect(&ssd, 90, 5, 20, 20, cor, !cor);
+        ssd1306_rect(&ssd, 100, 15, 20, 20, cor, !cor);
+    }
+
 }
 
 // INICIO
@@ -165,7 +171,7 @@ void interrupcao(uint gpio, uint32_t events)
             // Alterna o estado da variável led_ON
             led_ON = !led_ON;
             quadro++;
-            if(quadro > 2){
+            if(quadro > 3){
                 quadro = 1;
             }
         }
