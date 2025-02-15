@@ -121,7 +121,7 @@ int main()
         // Atualiza o display
         ssd1306_send_data(&ssd);
 
-        // Configura o ADC (provavelmente para ler sensores)
+        // Le os valores dos eixos
         adc_config();
 
         // Acende o LED verde
