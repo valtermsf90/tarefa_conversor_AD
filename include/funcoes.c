@@ -40,6 +40,3 @@ void inicializacao_gpio()
 	gpio_set_dir(LED_B, GPIO_OUT);
 }
 
-// inicializacao da maquina PIO-------------------------------------------------
-
-// ADC---------------------------------------------------------
