@@ -145,7 +145,7 @@ void interrupcao(uint gpio, uint32_t events)
     uint32_t current_time = to_us_since_boot(get_absolute_time());
 
     // Implementação de debounce: só executa se passaram pelo menos 500ms desde o último evento
-    if (current_time - last_time > 500000) 
+    if (current_time - last_time > 500000)
     {
         last_time = current_time; // Atualiza o tempo do último acionamento
 
@@ -178,7 +178,7 @@ void interrupcao(uint gpio, uint32_t events)
         // Verifica se o botão BT_A foi pressionado e alterna o status do PWM
         if (gpio == BT_A)
         {
-            status = !status; // Alterna entre ligado e desligado
+            status = !status;               // Alterna entre ligado e desligado
             pwm_set_enabled(slice, status); // Ativa/desativa o PWM
         }
     }
