@@ -25,7 +25,7 @@ int PIN;
 bool cor = true;
 bool led_ON = false;
 bool status = true;
-
+int quadro = 1;
 // PROTOTIPOS
 static void interrupcao(uint gpio, uint32_t events);
 
@@ -48,6 +48,15 @@ void config_display()
     ssd1306_fill(&ssd, false);
     ssd1306_send_data(&ssd);
 }
+void borda_retangulo(int modo){
+    if(modo == 1){
+        ssd1306_rect(&ssd, 3, 3, 122, 60, cor, !cor);
+    }
+    if(modo == 2){        
+        ssd1306_rect(&ssd, 6, 6, 116, 54, cor, !cor);
+        ssd1306_rect(&ssd, 9, 9, 110, 48, cor, !cor);
+    }
+}
 
 // INICIO
 int main()
@@ -66,6 +75,8 @@ int main()
     config_pwm(LED_B, status);
     config_pwm(LED_R, status);
 
+     // Desenha um retângulo como borda
+     
     // LOOP
     while (true)
     {
@@ -94,9 +105,8 @@ int main()
             posicao_y = 5;
         }
 
-        // Desenha um retângulo como borda
-        ssd1306_rect(&ssd, 3, 3, 122, 60, cor, !cor);
-
+       
+        borda_retangulo(quadro);
         // Desenha um quadrado na posição calculada
         ssd1306_rect(&ssd, posicao_y, posicao_x, 8, 8, 1, 1);
 
@@ -154,19 +164,10 @@ void interrupcao(uint gpio, uint32_t events)
         {
             // Alterna o estado da variável led_ON
             led_ON = !led_ON;
-
-            // Limpa o display e desenha um retângulo com base no estado de led_ON
-            ssd1306_fill(&ssd, !cor);
-            if (led_ON)
-            {
-                ssd1306_rect(&ssd, 3, 3, 122, 60, cor, !cor);
+            quadro++;
+            if(quadro > 2){
+                quadro = 1;
             }
-            else
-            {
-                ssd1306_rect(&ssd, 6, 6, 116, 54, cor, !cor);
-                ssd1306_rect(&ssd, 9, 9, 110, 48, cor, !cor);
-            }
-            ssd1306_send_data(&ssd); // Atualiza o display
         }
 
         // Verifica se o botão BT_B foi pressionado e reinicia no modo bootloader
