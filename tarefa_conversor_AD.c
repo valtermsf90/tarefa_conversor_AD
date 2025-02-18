@@ -177,9 +177,9 @@ int main()
         }
 
         // Exibe os valores dos eixos no terminal para depuração
-       /* printf("eixo x:%d\n", eixo_x_valor);
+       printf("eixo x:%d\n", eixo_x_valor);
         printf("posicao x:%d\n", posicao_x);
-        printf("eixo y:%d\n", eixo_y_valor);*/
+        printf("eixo y:%d\n", eixo_y_valor);
         printf("posicao y:%d\n", posicao_y); // Posição Y invertida
         // Aguarda 200ms antes da próxima iteração
         sleep_ms(200);

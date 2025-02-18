@@ -37,10 +37,13 @@ Ao mover o joystick, observe o ajuste no brilho dos LEDs e o movimento do quadra
 Pressione o Botão do Joystick para alternar o estado do LED verde e modificar a borda do display.
 Pressione o Botão A para ativar ou desativar o controle PWM dos LEDs.
 Pressione o Botão B para reiniciar o sistema.
+
 Repositório
 O código completo e mais detalhes sobre o projeto estão disponíveis no repositório do GitHub:
-
 https://github.com/valtermsf90/tarefa_conversor_AD
+
+Video de demostração:
+https://drive.google.com/drive/folders/1T9N0V9T6He8LBOJl-YK93pzzt9OpqMoJ?usp=sharing
 
 Conclusão
 Este projeto demonstra o uso de entradas analógicas e digitais para controlar LEDs RGB e exibir informações em um display OLED. Além disso, mostra como trabalhar com interrupções para interação com o usuário, criando uma experiência dinâmica e interativa.
