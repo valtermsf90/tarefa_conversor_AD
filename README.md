@@ -43,7 +43,7 @@ O código completo e mais detalhes sobre o projeto estão disponíveis no reposi
 https://github.com/valtermsf90/tarefa_conversor_AD
 
 Video de demostração:
-https://drive.google.com/drive/folders/1T9N0V9T6He8LBOJl-YK93pzzt9OpqMoJ?usp=sharing
+https://drive.google.com/file/d/1F5ety7HPJY6RWG6bOhRvrWnYR-HAbJck/view?usp=sharing
 
 Conclusão
 Este projeto demonstra o uso de entradas analógicas e digitais para controlar LEDs RGB e exibir informações em um display OLED. Além disso, mostra como trabalhar com interrupções para interação com o usuário, criando uma experiência dinâmica e interativa.
